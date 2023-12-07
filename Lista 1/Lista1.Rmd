@@ -1,0 +1,588 @@
+---
+title: "Lista 1 - Análise Multivariada"
+author: "Juliana Magalhães Rosa"
+date: "05/11/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE}
+#Carregando pacotes
+library(knitr) #tabelas
+library(ggplot2) #gráficos
+library(ggExtra) #gráficos marginais
+library(gridExtra) #gráficos marginais
+library(rgl) #gráfico 3D
+library(dplyr) #filtragem nos dados
+```
+
+```{r message=FALSE, warning=FALSE}
+#Configuração para gráfico 3D
+knitr::knit_hooks$set(webgl = hook_webgl)
+```
+
+
+# Questão 1
+
+__Leia o artigo "Lozano, T. (2016) Data Science: an Emerging Discipline, CITAS."__
+
+__Apresente três artigos, sendo um com enfase em estatística, um com enfase em ciência de dados e outro com enfase em mineração de dados. Indique as diferenças e semelhanças nos três estudos e pontos fortes e fracos de sua formação como estatístico para realizar estudos semelhantes.__
+
+__Observações: Sua resposta deve ser resumida no máximo em uma página. Os estudos devem ser anexados a resposta. Este exercício pode ser realizado em grupos de até 5 alunos.__
+
+Artigos: Statistics in Research Reports: A Reader's Guide (Rockville: Public Health Service, National Institutes of Health), Data science and prediction (Vasant Dhar), Data mining tools (Ralf Mikut).
+
+
+Estatística, Ciência de Dados e Mineração de Dados são áreas interconectadas e semelhantes em muitos aspectos. As três lidam com dados, em particular na sua análise e compreensão. Porém, algumas diferenças são colocadas por muitos estudiosos em termos da história desses campos de pesquisa e do seu uso no passado e atualmente.
+
+Uma primeira diferença apontada é em relação ao volume de dados. Nesse sentido, a mineração de dados é a que tem maior preparação para lidar com grandes quantidades de dados, seguida da ciência de dados e, por último, da estatística. Historicamente, a estatística é a mais antiga dessas áreas, tendo surgido em um período em que não existia um volume tão grande de dados disponíveis, então toda a sua base foi pensada para processos menores, sempre trabalhando com amostras. Nesse sentido, muitos testes estatísticos são propostos de forma amostral e acabam por ter resultados significantes para qualquer caso em que o volume de dados é muito grande, mesmo que não exista tal significância na prática.
+
+Também por sua construção histórica, a estatística é mais associada à probabilidade, à inferência, à amostras, sendo considerada um ramo da matemática. É, em geral, vista como tendo uma relação menos direta com computação, estruturas de dados, construção de algoritmos, etc. Esses elementos são mais presentes na ciência de dados e na mineração de dados, que são campos mais atuais, tendo nascido já em meio a um contexto de tecnologia.
+
+A estatística costuma ser mais atribuída a dados numéricos e costuma exigir maiores suposições sobre as variáveis envolvidas. Enquanto isso, a ciência de dados e, principalmente, a mineração de dados, consistem em automatização de processamento de dados e descoberta de padrões ocultos sem interferência direta do pesquisados em fases iniciais. Porém, essa automação pode significar uma maior dificuldade em distinguir ruído nos dados.
+
+A ciência de dados é uma mistura dos outros dois campos e tem maior foco em fenômenos do futuro e suas predições, enquanto a estatística funciona melhor como descrição e explicação para eventos passados.
+
+Em relação às diferenças entre ciência de dados e mineração de dados, a primeira tende a ser associada a problemas mais complexos e heterogêneos e a segunda à automação do processo de ingestão e análise de grandes volumes de dados.
+
+Como profissional da estatística, estou muito familiarizada com toda a parte de matemática, probabilidade, regressão, modelagem e testes estatísticos. Mas claro, o objetivo de ter todo esse arsenal de ferramentas e técnicas é justamente estar preparado para realizar projetos e pequisas com dados do começo ao fim e, principalmente, analisar dados com sabedoria e propriedade. Apesar de todos os pontos mencionados acima, a verdade é que os cursos de estatística já estão se voltando cada vez mais para a tecnologia e incorporando muitos elementos de cursos como os decomputação, os de software ou o próprio curso de ciência de dados. Ou seja, acredito que a tendência seja que os estatísticos estejam cada vez mais prontos para abraçarem títulos de "engenheiro de dados", "cientista de dados", "analista de dados", e para dominarem elementos como mineração de dados, machine learning, etc.
+
+# Questão 2
+
+__Pesquise sobre cada um dos problemas encontrados na análise multivariada. Para uma destas situações, encontre um exemplo de caso real e indique uma possível falha nas técnicas estatísticas tradicionais.__
+
+__(a) Mining (mineração, n muito elevado).__  
+
+Conjuntos de técnicas para lidar com grandes quantidades de dados.
+
+__(b) Scalability (escalabilidade).__  
+
+Capacidade do algoritmo ser manter eficiente e preciso quando a compexidade do problema aumenta.
+
+__(c) High Dimensional Data (dados em alta dimensão, n > p).__  
+
+Casos em que o número de parâmetros/ vari/aveis supera muito o número de observações dos dados.
+
+__(d) Pequenas amostras.__  
+
+Casos em que amostra não tem tamanho adequado para ser repsentativa da população e possibilitar inferências.
+
+__(e) Curse of Dimensionality (Problema de dimensionalidade).__  
+
+Aumento nas dimensões dos dados. Nessas situações, é impossivel se ter dados suficientes para cobrir todas as regiões de um espaço de dimensão tão elevada. Há o impedimento de se aprender quais partes do espaço são importantes e quais podem ser ignoradas.
+
+Artigo: *Meta-analysis of second-line antirheumatic drugs: sample size bias and uncertain benefit (P C Gøtzsche 1, J Pødenphant, M Olesen, P Halberg)*. É um caso de estudo com pequenas amostras que trouxe resultados equivocados. Algumas drogas foram estudadas e seu efeito foi tido como significante para se tratar reumatismo. No entanto, no artigo *Why Most Published Research Findings Are False*, o autor Ioannidis mostra que o aumento da amostra causa um decaimento no efeito observado desses remédios.
+
+# Questão 3
+
+__Considere um hipercubo de dimensão r e lados de comprimento 2A. Dentro deste hipercubo temos uma esfera r-dimensional de raio A. Encontre a proporção do volume do hipercubo que está fora da hiperesfera e mostre que a proporção tende a 1 a medida que a dimensão r cresce. O que este resultado indica?__
+
+A proporção pedida é dada por:
+
+$$p(r)=\frac{V_c-Ve}{V_c}=\frac{(2A)^r-\frac{4}{3}\pi A^r}{(2A)^r}=\frac{2^rA^r}{2^rA^r}-\frac{4\pi A^r}{2^rA^r*3}=1-\frac{4\pi}{3*2^r}$$
+
+Onde $V_c$ é o volume do hipercubo e $V_e$ é o volume da hiperesfera.
+
+O limite dessa proporção quando r cresce é dada por:
+
+$$\displaystyle \lim_{r \to \infty} p(r)=\displaystyle \lim_{r \to \infty} (1-\frac{4\pi}{3*2^r})=1-\frac{4\pi}{\infty}=1-0=1$$
+
+Esse resultado indica que à medida que o número de dimensões aumenta, o volume do hipercubo cresce tanto que independente do tamanho do seu raio, a hiperesfera terá um volume despresível em relação a ele.
+
+Em termos de um conjunto de dados, isso seria equivalente a ter um número muito grande de variáveis. Quando isso ocorre, nenhuma quantidade de observações é grande o suficiente para se obter resultados significativos (_Curse of Dimensionality_).
+
+# Questão 4
+
+__Johnson e Wichern - Exercício 1.1.__
+
+__Considere sete pares de medidas $(x_1,x_2)$:__
+
+```{r echo=F, message=FALSE, warning=FALSE}
+tabela1 <- matrix(c(3, 4, 2, 6, 8, 2, 5, 5, 5.5, 4, 7, 10, 5, 7.5), 2, byrow=T)
+row.names(tabela1) <- c("x1", "x2")
+kable(tabela1)
+```
+
+__Calcule as médias amostrais $\bar{x}_1$ e $\bar{x}_2$, as variâncias amostrais $s_{11}$ e $s_{22}$ e a covariância amostral $s_{12}=s_{21}$.__
+
+```{r message=FALSE, warning=FALSE}
+#Criando vetores para x1 e x2
+x1 <- c(3, 4, 2, 6, 8, 2, 5)
+x2 <- c(5, 5.5, 4, 7, 10, 5, 7.5)
+```
+
+```{r message=FALSE, warning=FALSE}
+#Média de x1
+x1_barra <- sum(x1)/length(x1)
+x1_barra #manual
+mean(x1) #automático
+```
+
+```{r message=FALSE, warning=FALSE}
+#Média de x2
+x2_barra <- sum(x2)/length(x2)
+x2_barra #manual
+mean(x2) #automático
+```
+
+```{r message=FALSE, warning=FALSE}
+#Variância de x1
+s11 <- sum((x1-x1_barra)^2)/(length(x1)-1)
+s11 #manual
+var(x1) #automático
+```
+
+```{r message=FALSE, warning=FALSE}
+#Variância de x2
+s22 <- sum((x2-x2_barra)^2)/(length(x2)-1)
+s22 #manual
+var(x2) #automático
+```
+
+```{r message=FALSE, warning=FALSE}
+#Covariância
+s12 <- sum((x1-x1_barra)*(x2-x2_barra))/(length(x1)-1)
+s12 #manual
+cov(x1, x2) #automático
+```
+
+Ou seja, $\bar{x}_1=4,29$, $\bar{x}_2=6,29$, $s_{11}=4,90$, $s_{22}=4,15$ e $s_{12}=s_{21}=4,32$.
+
+# Questão 5
+
+__Johnson e Wichern - Exercício 1.2.__
+
+__Um jornal matinal lista os seguintes preços de carros usados com idade $x_1$ medida em anos e preço de venda $x_2$ medido em em milhares de dólares:__
+
+```{r echo=F, message=FALSE, warning=FALSE}
+tabela2 <- matrix(c(1, 2, 3, 3, 4, 5, 6, 8, 9, 11, 18.95, 19.00, 17.95, 15.54, 14.00, 12.95, 8.94, 7.49, 6.00, 3.99), 2, byrow=T)
+row.names(tabela2) <- c("x1", "x2")
+kable(tabela2)
+```
+
+__(a) Construa um diagrama de dispersão dos dados com diagramas de pontos marginais.__
+
+```{r message=FALSE, warning=FALSE}
+#Criando vetores para x1 e x2
+x1 <- c(1, 2, 3, 3, 4, 5, 6, 8, 9, 11)
+x2 <- c(18.95, 19, 17.95, 15.54, 14, 12.95, 8.94, 7.49, 6, 3.99)
+```
+
+```{r message=FALSE, warning=FALSE}
+#Gráfico de x1 e x2
+dd <- ggplot()+
+  geom_point(aes(x1, x2))+
+  theme_light()+
+  labs(title="Preços de Carros Usados por Idade",
+       x="Idade do carro (anos)",
+       y="Preço de venda do carro (milhares de dólares)")
+
+ggMarginal(dd, type="histogram")
+```
+
+Em vez do diagrama de pontos, foi usado o histograma para os gráficos marginais, mas a interpretação é a mesma.
+
+__(b) Faça a inferência do sinal da covariância amostral $s_12=s_21$ a partir do diagrama de dispersão.__
+
+O sinal da covariância amostral será negativa, representando a relação negativa entre $x_1$ e $x_2$: à medida que a idade do carro aumenta, seu preço diminui.
+
+__(c) Calcule as médias amostrais $\bar{x}_1$ e $\bar{x}_2$, as variâncias amostrais $s_{11}$ e $s_{22}$, a covariância amostral $s_{12}=s_{21}$ e o coeficiente de correlação amostral $r_{12}=r_{21}$. Interprete esses valores.__
+
+```{r message=FALSE, warning=FALSE}
+#Média de x1
+x1_barra <- sum(x1)/length(x1)
+x1_barra #manual
+mean(x1) #automático
+```
+
+```{r message=FALSE, warning=FALSE}
+#Média de x2
+x2_barra <- sum(x2)/length(x2)
+x2_barra #manual
+mean(x2) #automático
+```
+
+```{r message=FALSE, warning=FALSE}
+#Variância de x1
+s11 <- sum((x1-x1_barra)^2)/(length(x1)-1)
+s11 #manual
+var(x1) #automático
+```
+
+```{r message=FALSE, warning=FALSE}
+#Variância de x2
+s22 <- sum((x2-x2_barra)^2)/(length(x2)-1)
+s22 #manual
+var(x2) #automático
+```
+
+```{r message=FALSE, warning=FALSE}
+#Covariância
+s12 <- sum((x1-x1_barra)*(x2-x2_barra))/(length(x1)-1)
+s12 #manual
+cov(x1, x2) #automático
+```
+
+```{r message=FALSE, warning=FALSE}
+#Coeficiente de correlação
+r12 <- s12/sqrt(s11*s22)
+r12 #manual
+cor(x1, x2) #automático
+```
+
+Ou seja, $\bar{x}_1=5,20$, $\bar{x}_2=12,48$, $s_{11}=10,62$, $s_{22}=30,85$,  $s_{12}=s_{21}=-17,71$ e $r_{12}=r_{21}=-0,98$.
+
+__(d) Mostre o vetor de médias amostrais $\boldsymbol{\bar{x}}$, a matriz de variância-covariância amostral $\boldsymbol{S_n}$ e a matriz de correlação amostral $\boldsymbol{R}$.__
+
+
+```{r message=FALSE, warning=FALSE}
+matrix(c(x1_barra, x2_barra), 2) #médias
+matrix(c(s11, s12, s12, s22), 2, byrow=T) #variâncias e covariância
+matrix(c(1, r12, r12, 1), 2, byrow=T) #correlação
+```
+
+# Questão 6
+
+__Johnson e Wichern - Exercício 1.6 - *air-pollution data*.__
+
+__Os dados na tabela abaixo são 42 medições variáveis sobre poluição de ar registradas ao meio dia em áreas de Los Angeles em diferentes dias. (Veja também os dados de poluiçã de ar na *internet* em www.prenhall.com/statistics.)__
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+poluicao <- c(8, 98, 7, 2, 12, 8, 2,
+              7, 107, 4, 3, 9, 5, 3,
+              7, 103, 4, 3, 5, 6, 3,
+              10, 88, 5, 2, 8, 15, 4,
+              6, 91, 4, 2, 8, 10, 3,
+              8, 90, 5, 2, 12, 12, 4,
+              9, 84, 7, 4, 12, 15, 5,
+              5, 72, 6, 4, 21, 14, 4,
+              7, 82, 5, 1, 11, 11, 3,
+              8, 64, 5, 2, 13, 9, 4,
+              6, 71, 5, 4, 10, 3, 3,
+              6, 91, 4, 2, 12, 7, 3,
+              7, 72, 7, 4, 18, 10, 3,
+              10, 70, 4, 2, 11, 7, 3,
+              10, 72, 4, 1, 8, 10, 3,
+              9, 77, 4, 1, 9, 10, 3,
+              8, 76, 4, 1, 7, 7, 3,
+              8, 71, 5, 3, 16, 4, 4,
+              9, 67, 4, 2, 13, 2, 3,
+              9, 69, 3, 3, 9, 5, 3,
+              10, 62, 5, 3, 14, 4, 4,
+              9, 88, 4, 2, 7, 6, 3,
+              8, 80, 4, 2, 13, 11, 4,
+              5, 30, 3, 3, 5, 2, 3,
+              6, 83, 5, 1, 10, 23, 4,
+              8, 84, 3, 2, 7, 6, 3,
+              6, 78, 4, 2, 11, 11, 3,
+              8, 79, 2, 1, 7, 10, 3,
+              6, 62, 4, 3, 9, 8, 3,
+              10, 37, 3, 1, 7, 2, 3,
+              8, 71, 4, 1, 10, 7, 3,
+              7, 52, 4, 1, 12, 8, 4,
+              5, 48, 6, 5, 8, 4, 3,
+              6, 75, 4, 1, 10, 24, 3,
+              10, 35, 4, 1, 6, 9, 2,
+              8, 85, 4, 1, 9, 10, 2,
+              5, 86, 3, 1, 6, 12, 2,
+              5, 86, 7, 2, 13, 18, 2,
+              7, 79, 7, 4, 9, 25, 3,
+              7, 79, 5, 2, 8, 6, 2,
+              6, 68, 6, 2, 11, 14, 3,
+              8, 40, 4, 3, 6, 5, 2)
+poluicao <- matrix(poluicao, 42, 7, byrow=T)
+poluicao <- data.frame(poluicao)
+names(poluicao) <- c("Vento (x1)", "Radiação Solar (x2)", "CO (x3)", "NO (x4)", "NO2 (x5)", "O3 (x6)", "HC (x7)")
+kable(poluicao)
+```
+
+__(a) Faça o diagrama de pontos marginal para todas as variáves.__
+
+```{r message=FALSE, warning=FALSE}
+#Entrada de dados
+poluicao <- c(8, 98, 7, 2, 12, 8, 2,
+              7, 107, 4, 3, 9, 5, 3,
+              7, 103, 4, 3, 5, 6, 3,
+              10, 88, 5, 2, 8, 15, 4,
+              6, 91, 4, 2, 8, 10, 3,
+              8, 90, 5, 2, 12, 12, 4,
+              9, 84, 7, 4, 12, 15, 5,
+              5, 72, 6, 4, 21, 14, 4,
+              7, 82, 5, 1, 11, 11, 3,
+              8, 64, 5, 2, 13, 9, 4,
+              6, 71, 5, 4, 10, 3, 3,
+              6, 91, 4, 2, 12, 7, 3,
+              7, 72, 7, 4, 18, 10, 3,
+              10, 70, 4, 2, 11, 7, 3,
+              10, 72, 4, 1, 8, 10, 3,
+              9, 77, 4, 1, 9, 10, 3,
+              8, 76, 4, 1, 7, 7, 3,
+              8, 71, 5, 3, 16, 4, 4,
+              9, 67, 4, 2, 13, 2, 3,
+              9, 69, 3, 3, 9, 5, 3,
+              10, 62, 5, 3, 14, 4, 4,
+              9, 88, 4, 2, 7, 6, 3,
+              8, 80, 4, 2, 13, 11, 4,
+              5, 30, 3, 3, 5, 2, 3,
+              6, 83, 5, 1, 10, 23, 4,
+              8, 84, 3, 2, 7, 6, 3,
+              6, 78, 4, 2, 11, 11, 3,
+              8, 79, 2, 1, 7, 10, 3,
+              6, 62, 4, 3, 9, 8, 3,
+              10, 37, 3, 1, 7, 2, 3,
+              8, 71, 4, 1, 10, 7, 3,
+              7, 52, 4, 1, 12, 8, 4,
+              5, 48, 6, 5, 8, 4, 3,
+              6, 75, 4, 1, 10, 24, 3,
+              10, 35, 4, 1, 6, 9, 2,
+              8, 85, 4, 1, 9, 10, 2,
+              5, 86, 3, 1, 6, 12, 2,
+              5, 86, 7, 2, 13, 18, 2,
+              7, 79, 7, 4, 9, 25, 3,
+              7, 79, 5, 2, 8, 6, 2,
+              6, 68, 6, 2, 11, 14, 3,
+              8, 40, 4, 3, 6, 5, 2)
+poluicao <- matrix(poluicao, 42, 7, byrow=T)
+poluicao <- data.frame(poluicao)
+names(poluicao) <- c("x1", "x2", "x3", "x4", "x5", "x6", "x7")
+```
+
+```{r message=FALSE, warning=FALSE}
+#Vento - x1
+ggplot(poluicao)+
+  geom_dotplot(aes(x1))+
+  labs(title="Distribuição de Frequências da Variável Vento", x="Vento", y="Contagem")
+
+#Radiação Solar - x2
+ggplot(poluicao)+
+  geom_dotplot(aes(x2))+
+  labs(title="Distribuição de Frequências da Variável Radiação Solar", x="Radiação Solar", y="Contagem")
+
+#CO - x3
+ggplot(poluicao)+
+  geom_dotplot(aes(x3))+
+  labs(title="Distribuição de Frequências da Variável CO", x="CO", y="Contagem")
+
+#NO - x4
+ggplot(poluicao)+
+  geom_dotplot(aes(x4))+
+  labs(title="Distribuição de Frequências da Variável NO", x="NO", y="Contagem")
+
+#NO2 - x5
+ggplot(poluicao)+
+  geom_dotplot(aes(x5))+
+  labs(title="Distribuição de Frequências da Variável NO2", x="NO2", y="Contagem")
+
+#O3 - x6
+ggplot(poluicao)+
+  geom_dotplot(aes(x6))+
+  labs(title="Distribuição de Frequências da Variável O3", x="O3", y="Contagem")
+
+#HC (x7)
+ggplot(poluicao)+
+  geom_dotplot(aes(x7))+
+  labs(title="Distribuição de Frequências da Variável HC", x="HC", y="Contagem")
+```
+
+__(b) Construa o vetor $\boldsymbol{\bar{x}}$, as matrizes $\boldsymbol{S_n}$ e $\boldsymbol{R}$ e interprete os resultados.__
+
+```{r message=FALSE, warning=FALSE}
+#Médias
+matrix(colMeans(poluicao), ncol=1)
+```
+
+Representam os valores médios de vento, radiação solar, etc.
+
+```{r message=FALSE, warning=FALSE}
+#Variância-Covariancia
+cov(poluicao)
+```
+
+Na diagonal principal estão as variâncias, sendo a maior delas a da radiação solar. Porém, a variância reflete a escala média, então não serve para comparações. A variável radiação solar assume valores bem maiores do que as demais, o que é refletido na sua variância. Para comparar, seria necessário usar os coeficientes de variação
+
+```{r message=FALSE, warning=FALSE}
+#Coeficientes de correlação
+cor(poluicao)
+```
+
+O vento tem correlação negativa com todas as variáveis menos a emissão de HC.  
+A emissão de HC tem correlação positiva com todas as variáveis.  
+As emissões de CO e NO2 têm correlação positiva com todas as variáveis menos o vento.
+
+```{r message=FALSE, warning=FALSE}
+sum(cor(poluicao)==1) #somente a diagonal principal é =1
+cor(poluicao)>0.5 & cor(poluicao)!=1 #Pega as maiores correlações, excluindo a diagonal principal
+```
+
+As correlações mais fortes são entre $(x_3, x_4)$ e $(x_3, x_5)$, ou seja, entre emissão de CO e emissão de NO/NO2.
+
+# Questão 7
+
+__Johnson e Wichern - Exercício 1.22 - *oxygen-consumption data*.__
+
+__Dados de consumo de oxigênio:__
+
+```{r echo=F, message=FALSE, warning=FALSE}
+oxigenio <- c(0.34, 3.71, 2.87, 30.87, 0.29, 5.04, 1.93, 33.85,
+              0.39, 5.08, 3.38, 43.85, 0.28, 3.95, 2.51, 35.82,
+              0.48, 5.13, 4.13, 44.51, 0.31, 4.88, 2.31, 36.40,
+              0.31, 3.95, 3.60, 46.00, 0.30, 5.97, 1.90, 37.87,
+              0.36, 5.51, 3.11, 47.02, 0.28, 4.57, 2.32, 38.30,
+              0.33, 4.07, 3.95, 48.50, 0.11, 1.74, 2.49, 39.19,
+              0.43, 4.77, 4.39, 48.75, 0.25, 4.66, 2.12, 39.21,
+              0.48, 6.69, 3.50, 48.86, 0.26, 5.28, 1.98, 39.94,
+              0.21, 3.71, 2.82, 48.92, 0.39, 7.32, 2.25, 42.41,
+              0.32, 4.35, 3.59, 48.38, 0.37, 6.22, 1.71, 28.97,
+              0.54, 7.89, 3.47, 50.56, 0.31, 4.20, 2.76, 37.80,
+              0.32, 5.37, 3.07, 51.15, 0.35, 5.10, 2.10, 31.10,
+              0.40, 4.95, 4.43, 55.34, 0.29, 4.46, 2.50, 38.30,
+              0.31, 4.97, 3.56, 56.67, 0.33, 5.60, 3.06, 51.80,
+              0.44, 6.68, 3.86, 58.49, 0.18, 2.80, 2.40, 37.60,
+              0.32, 4.80, 3.31, 49.99, 0.28, 4.01, 2.58, 36.78,
+              0.50, 6.43, 3.29, 42.25, 0.44, 6.69, 3.05, 46.16,
+              0.36, 5.99, 3.10, 51.70, 0.22, 4.55, 1.85, 38.95,
+              0.48, 6.30, 4.80, 63.30, 0.34, 5.73, 2.43, 40.60,
+              0.40, 6.00, 3.06, 46.23, 0.30, 5.12, 2.58, 43.69,
+              0.42, 6.04, 3.85, 55.08, 0.31, 4.77, 1.97, 30.40,
+              0.55, 6.45, 5.00, 58.80, 0.27, 5.16, 2.03, 39.46,
+              0.50, 5.55, 5.23, 57.46, 0.66, 11.05, 2.32, 39.34,
+              0.34, 4.27, 4.00, 50.35, 0.37, 5.23, 2.48, 34.86,
+              0.40, 4.58, 2.82, 32.48, 0.35, 5.37, 2.25, 35.07)
+oxigenio <- matrix(oxigenio, 50, 4, byrow=T)
+oxigenio <- data.frame(oxigenio)
+names(oxigenio) <- c("x1", "x2", "x3", "x4")
+oxigenio$sexo <- rep(c("Masculino", "Feminino"), 25)
+kable(oxigenio)
+```
+
+__(a) Visualize os dados em três dimensões fazendo várias combinações de três variáveis para representar os eixos de coordenadas. Comece com o espaço $x_1$, $x_2_$, $x_3$.__
+
+```{r message=FALSE, warning=FALSE}
+#Entrada de dados
+oxigenio <- c(0.34, 3.71, 2.87, 30.87, 0.29, 5.04, 1.93, 33.85,
+              0.39, 5.08, 3.38, 43.85, 0.28, 3.95, 2.51, 35.82,
+              0.48, 5.13, 4.13, 44.51, 0.31, 4.88, 2.31, 36.40,
+              0.31, 3.95, 3.60, 46.00, 0.30, 5.97, 1.90, 37.87,
+              0.36, 5.51, 3.11, 47.02, 0.28, 4.57, 2.32, 38.30,
+              0.33, 4.07, 3.95, 48.50, 0.11, 1.74, 2.49, 39.19,
+              0.43, 4.77, 4.39, 48.75, 0.25, 4.66, 2.12, 39.21,
+              0.48, 6.69, 3.50, 48.86, 0.26, 5.28, 1.98, 39.94,
+              0.21, 3.71, 2.82, 48.92, 0.39, 7.32, 2.25, 42.41,
+              0.32, 4.35, 3.59, 48.38, 0.37, 6.22, 1.71, 28.97,
+              0.54, 7.89, 3.47, 50.56, 0.31, 4.20, 2.76, 37.80,
+              0.32, 5.37, 3.07, 51.15, 0.35, 5.10, 2.10, 31.10,
+              0.40, 4.95, 4.43, 55.34, 0.29, 4.46, 2.50, 38.30,
+              0.31, 4.97, 3.56, 56.67, 0.33, 5.60, 3.06, 51.80,
+              0.44, 6.68, 3.86, 58.49, 0.18, 2.80, 2.40, 37.60,
+              0.32, 4.80, 3.31, 49.99, 0.28, 4.01, 2.58, 36.78,
+              0.50, 6.43, 3.29, 42.25, 0.44, 6.69, 3.05, 46.16,
+              0.36, 5.99, 3.10, 51.70, 0.22, 4.55, 1.85, 38.95,
+              0.48, 6.30, 4.80, 63.30, 0.34, 5.73, 2.43, 40.60,
+              0.40, 6.00, 3.06, 46.23, 0.30, 5.12, 2.58, 43.69,
+              0.42, 6.04, 3.85, 55.08, 0.31, 4.77, 1.97, 30.40,
+              0.55, 6.45, 5.00, 58.80, 0.27, 5.16, 2.03, 39.46,
+              0.50, 5.55, 5.23, 57.46, 0.66, 11.05, 2.32, 39.34,
+              0.34, 4.27, 4.00, 50.35, 0.37, 5.23, 2.48, 34.86,
+              0.40, 4.58, 2.82, 32.48, 0.35, 5.37, 2.25, 35.07)
+oxigenio <- matrix(oxigenio, 50, 4, byrow=T)
+oxigenio <- data.frame(oxigenio)
+names(oxigenio) <- c("x1", "x2", "x3", "x4")
+oxigenio$sexo <- rep(c("Masculino", "Feminino"), 25)
+oxigenio$cores <- rep(c("green", "purple"))
+```
+
+```{r, webgl=TRUE, message=FALSE, warning=FALSE}
+#Gráfico x1, x2, x3
+plot3d( 
+  x=oxigenio$x1, y=oxigenio$x2, z=oxigenio$x3,
+  col = oxigenio$cores,
+  xlab="x1", ylab="x2", zlab="x3",
+  type = 's',
+  radius = .1)
+```
+
+```{r, webgl=TRUE, message=FALSE, warning=FALSE}
+#Gráfico x1, x2, x4
+plot3d( 
+  x=oxigenio$x1, y=oxigenio$x2, z=oxigenio$x4,
+  col = oxigenio$cores,
+  xlab="x1", ylab="x2", zlab="x4",
+  type = 's',
+  radius = .5)
+
+```
+
+```{r, webgl=TRUE, message=FALSE, warning=FALSE}
+#Gráfico x1, x3, x4
+plot3d( 
+  x=oxigenio$x1, y=oxigenio$x3, z=oxigenio$x4,
+  col = oxigenio$cores,
+  xlab="x1", ylab="x3", zlab="x4",
+  type = 's',
+  radius = .5)
+
+```
+
+```{r, webgl=TRUE, message=FALSE, warning=FALSE}
+#Gráfico x2, x3, x4
+plot3d( 
+  x=oxigenio$x2, y=oxigenio$x3, z=oxigenio$x4,
+  col = oxigenio$cores,
+  xlab="x2", ylab="x3", zlab="x4",
+  type = 's',
+  radius = .5)
+```
+
+__(b) Verifique se existem *outliers* nos dados.__
+
+```{r message=FALSE, warning=FALSE}
+oxigenio$id <- 1:50
+
+#x1
+ggplot(oxigenio)+
+  geom_boxplot(aes(x1, fill=sexo))+
+  labs(title="Busca por outliers em x1", "x1", "")+
+  coord_flip()
+
+oxigenio%>%
+  filter(x1>0.5 | x1<0.15, sexo=="Feminino")
+
+#x2
+
+ggplot(oxigenio)+
+  geom_boxplot(aes(x2, fill=sexo))+
+  labs(title="Busca por outliers em x2", "x2", "")+
+  coord_flip()
+
+oxigenio%>%
+  filter(x2>7 | x2<3, sexo=="Feminino")
+
+#x3
+
+ggplot(oxigenio)+
+  geom_boxplot(aes(x3, fill=sexo))+
+  labs(title="Busca por outliers em x3", "x3", "")+
+  coord_flip()
+
+#x4
+
+ggplot(oxigenio)+
+  geom_boxplot(aes(x4, fill=sexo))+
+  labs(title="Busca por outliers em x4", "x4", "")+
+  coord_flip()
+
+oxigenio%>%
+  filter(x4>45 | x4<30, sexo=="Feminino")
+
+oxigenio%>%
+  filter(x4<40, sexo=="Masculino")
+```
+
+Existem 2 outliers em $x_1$, ambos mulheres.  
+Os mesmos 2 são outliers também em $x_2$. Além disso, mais 2 observações são outliers em $x_2$. Os 4 são mulheres.  
+$x_3$ não apresenta outliers.  
+$x_4$ apresenta 2 outliers homens e 3 mulheres (das quais nenhuma é uma das mencionadas antes).  
+Ou seja, existe um total de 9 outliers (2 homens e 7 mulheres).

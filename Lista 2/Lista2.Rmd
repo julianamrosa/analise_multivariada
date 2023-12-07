@@ -1,0 +1,89 @@
+---
+title: "Lista 2 - Análise Multivariada"
+author: "Juliana Magalhães Rosa"
+date: "16/11/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Questão 1
+
+__Marque Verdadeiro (V) ou Falso (F) para as seguintes afirmações.__
+
+__1)*Curse of Dimensionality* é um problema encontrado em estudos com número muito grande de observações.__
+
+Falso, é número de "variáveis" ou "parâmetos".
+
+__2)Se $A=B^TB$ com $rank(B_{nXp})=p<n$, então $A$ é positiva definida.__
+
+Verdadeiro, como $B$ é de posto completo, seu produto por sua transposta forma uma matriz positiva definida.
+
+__3) Qualquer matriz $A$ pode ser fatorada em $T^TT$, sendo $T$ uma matriz triangular superior e não singular.__
+
+Falso, $A$ deve ser quadrada e positiva definida para que a Decomposição de Cholesky possa ser aplicada.
+
+__4) Se uma matriz quadrada $P$ é ortogonal, então $P^{−1} = P^T$.__
+
+Verdadeiro, essa é a definição de uma matriz ortogonal.
+
+__5) Uma matriz quadrada $A$ tem autovalor $\lambda > 0$ e autovetor correspondente $x \neq 0$, se $Ax = \lambda x$.__
+
+Verdadeiro, essas são as definições de autovalores e autovetores.
+
+__6) Seja um conjunto de dados com $n$ observações e $p$ variáveis. O traço da matriz de correlação destes dados é sempre igual a $p$.__
+
+Verdadeiro, pois a matriz de correlações tem dimensões $pXp$ e sempre possui diagonal unitária (representando os coeficientes de correlação entre uma variável e ela mesma). Logo, a soma de $p$ elementos unitários é igual a $p$.
+
+__7) Seja um conjunto de dados com $n$ observações e $p$ variáveis. O traço da matriz de variância-covariância ($\Sigma$) será igual à variância total ($TSV$) somente quando as variáveis forem independentes.__
+
+Falso, a $TSV$ nada mais é do que a soma das variâncias das variáveis explicativas. Como a diagonal da matriz de covariâncias é justamente composta pelas variâncias de cada uma dessas variáveis, o taço da matriz será igual a essa soma de variâncias.
+
+__8) Se $\lambda$ é autovalor de $A$ e $x$ é o autovetor correspondente, então $1 + \lambda$ é autovalor de $I + A$.__
+
+Falso.
+
+Se $\lambda$ é autovalor de $A$, então temos:
+
+$$|A-\lambda I| =0$$
+
+Para achar o autovalor $\lambda_B$ de $B=I+A$, devemos fazer:
+
+$$|B-\lambda_B I| =0$$
+$$|(I+A)-\lambda_B I| =0$$
+
+$$|A-I-\lambda_B I| =0$$
+
+$$|A-(1-\lambda_B) I| =0$$
+
+Daí, observando a primeira equação, é possível perceber que:
+
+$$(1-\lambda_B)=\lambda$$
+Logo:
+
+$$\lambda_B=1-\lambda$$
+
+__9) A variância amostral total ($TSV$) ignora a estrutura de covariância das variáveis em estudo.__
+
+Verdadeiro, é uma medida que leva em consideração apenas as variâncias de cada variável (em particular, a soma delas), não suas covariâncias entre si.
+
+__10) A variância amostral generalizada ($GSV$) tem valores diferentes para diferentes padrões de variabilidade e associação e por isso serve para comparar variáveis no espaço p-dimensional.__
+
+Falso, a $GSV$ depende tanto das variâncias como das covariâncias, então pode acontecer de diferentes matrizes de variância-covariância resultarem em um mesmo valor de $GSV$ (mesmo determinante para a matriz $S$). O uso da $GSV_R$, baseada na matriz de correlações, garante uma medida que depende apenas da associação entre as variáveis, pois neutraliza o efeito da variância. Portanto, a $GSV_R$ é mais adequada para comparações entre variáveis.
+
+# Questão 2
+
+__Provar o seguinte teorema:__
+
+__Seja $X_{(nxk)}$ tal que $rank(X)=k<n$. Então, $P_X=X(X^TX)^{-1}X^T$ é idempotente e simétrica e consequenemente, uma matriz projeção ortogonal.__
+
+# Questão 3
+
+__Utilizando o R verifique, através de exemplos, que uma matriz de projeção tem autovalores somente no conjunto ${0, 1}$. A demonstração pode ser feita utilizando a equação característica e lembrando que se $M$ é uma matriz de projeção, então $M = M^2 = M^T$.__
+
+# Questão 4
+
+
+
