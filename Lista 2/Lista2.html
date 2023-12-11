@@ -438,15 +438,520 @@ entre variáveis.</p>
 <p><strong>Seja <span class="math inline">\(X_{(nxk)}\)</span> tal que
 <span class="math inline">\(rank(X)=k&lt;n\)</span>. Então, <span class="math inline">\(P_X=X(X^TX)^{-1}X^T\)</span> é idempotente e
 simétrica e consequenemente, uma matriz projeção ortogonal.</strong></p>
+<p>DÚVIDA.</p>
 </div>
 <div id="questão-3" class="section level1">
 <h1>Questão 3</h1>
 <p><strong>Utilizando o R verifique, através de exemplos, que uma matriz
 de projeção tem autovalores somente no conjunto <span class="math inline">\({0, 1}\)</span>. A demonstração pode ser feita
 utilizando a equação característica e lembrando que se <span class="math inline">\(M\)</span> é uma matriz de projeção, então <span class="math inline">\(M = M^2 = M^T\)</span>.</strong></p>
+<p>DÚVIDA.</p>
 </div>
 <div id="questão-4" class="section level1">
 <h1>Questão 4</h1>
+<p><strong>Provar o seguinte teorema: Sejam <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> matrizes idempotentes.
+Então,</strong></p>
+<p><strong>(a) <span class="math inline">\(A + B\)</span> é idempotente
+somente quando <span class="math inline">\(AB = BA =
+0\)</span>.</strong></p>
+<p><span class="math inline">\(A+B\)</span> ser idempotente significaria
+que:</p>
+<p><span class="math display">\[A+B=(A+B)^2\]</span> <span class="math display">\[A+B=(A+B)(A+B)\]</span></p>
+<p><span class="math display">\[A+B=A^2+AB+BA+B^2\]</span></p>
+<p>Lembrando que <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> são idempotentes, ou seja, <span class="math inline">\(A=A^2\)</span> e <span class="math inline">\(B=B^2\)</span>, temos:</p>
+<p><span class="math display">\[A+B=A+AB+BA+B\]</span> <span class="math display">\[A-A+B-B=AB+BA\]</span> <span class="math display">\[0=AB+BA\]</span> <span class="math display">\[AB=-BA\]</span></p>
+<p>E isso só se satisfaz se <span class="math inline">\(AB=BA=0\)</span>.</p>
+<p><strong>(b) <span class="math inline">\(C = AB\)</span> é idempotente
+somente quando <span class="math inline">\(AB =
+BA\)</span>.</strong></p>
+<p>DÚVIDA.</p>
+<p><strong>(c) <span class="math inline">\(I − A\)</span> é
+idempotente.</strong></p>
+<p><span class="math display">\[(I-A)^2=(I-A)(I-A)\]</span> <span class="math display">\[(I-A)^2=I^2-IA-AI+A^2\]</span></p>
+<p><span class="math display">\[(I-A)^2=I^2-A-A+A^2\]</span></p>
+<p><span class="math display">\[(I-A)^2=I^2-2A+A^2\]</span></p>
+<p>Como <span class="math inline">\(A\)</span> é idempotente e <span class="math inline">\(I\)</span> também, temos que <span class="math inline">\(A=A^2\)</span> e <span class="math inline">\(I=I^2\)</span> e portanto:</p>
+<p><span class="math display">\[(I-A)^2=I-2A+A\]</span></p>
+<p><span class="math display">\[(I-A)^2=I-A\]</span> Logo, <span class="math inline">\(I-A\)</span> é idempotente.</p>
+</div>
+<div id="questão-5" class="section level1">
+<h1>Questão 5</h1>
+<p><strong>Seja <span class="math inline">\(x_1, x_2, . . . ,
+x_n\)</span> uma amostra aleatória de uma distribuição conjunta com
+vetor de médias <span class="math inline">\(\mu\)</span> e matriz de
+variância-covariância <span class="math inline">\(\Sigma\)</span>.
+Mostrar que</strong></p>
+<p><span class="math display">\[E(\bar{X})=\mu\]</span> E</p>
+<p><span class="math display">\[Cov(\bar{X})=\frac{1}{n}\Sigma\]</span></p>
+<p><strong>Nota: Esta demonstração é apresentada por Johnson e Wichern
+na página 121.</strong></p>
+<p>Primeiro, para <span class="math inline">\(E(\bar{X})\)</span>,
+temos:</p>
+<p><span class="math display">\[E(\bar{X})=E(\frac{\sum_{i=1}^nXi}{n})\]</span></p>
+<p><span class="math display">\[E(\bar{X})=\frac{1}{n}\sum_{i=1}^nE(Xi)\]</span>
+<span class="math display">\[E(\bar{X})=\frac{1}{n}\sum_{i=1}^n
+\mu\]</span></p>
+<p><span class="math display">\[E(\bar{X})=\frac{1}{n}n \mu\]</span></p>
+<p><span class="math display">\[E(\bar{X})=\mu\]</span></p>
+<p>Já para <span class="math inline">\(Cov(\bar{X})\)</span>:</p>
+<p><span class="math display">\[Cov(\bar{X})=E[(\bar{X}-E\bar{X})(\bar{X}-E\bar{X})^T]\]</span></p>
+<p><span class="math display">\[Cov(\bar{X})=E[(\bar{X}-\mu)(\bar{X}-\mu)^T]\]</span></p>
+<p><span class="math display">\[Cov(\bar{X})=E[\frac{\sum_{j=1}^n(X_j-\mu)}{n}\frac{\sum_{l=1}^n(X_l-\mu)^T}{n}]\]</span></p>
+<p><span class="math display">\[Cov(\bar{X})=E[\frac{\sum_{j=1}^n(X_j-\mu)}{n}\frac{\sum_{l=1}^n(X_l-\mu)^T}{n}]\]</span></p>
+<p><span class="math display">\[Cov(\bar{X})=E[\frac{1}{n^2}\sum_{j=1}^n\sum_{l=1}^n(X_j-\mu)(X_l-\mu)^T]\]</span></p>
+<p><span class="math display">\[Cov(\bar{X})=\frac{1}{n^2}\sum_{j=1}^n\sum_{l=1}^nE[(X_j-\mu)(X_l-\mu)^T]\]</span>
+Obs.: Não entendi o porquê do próximo passo, mas aparentemente os
+elementos do somatório são nulos para <span class="math inline">\(j\neq
+l\)</span>.</p>
+<p><span class="math display">\[Cov(\bar{X})=\frac{1}{n^2}\sum_{j=1}^nE[(X_j-\mu)(X_j-\mu)^T]\]</span></p>
+<p><span class="math display">\[Cov(\bar{X})=\frac{1}{n^2}\sum_{j=1}^n
+\Sigma\]</span> <span class="math display">\[Cov(\bar{X})=\frac{1}{n^2}n
+\Sigma\]</span></p>
+<p><span class="math display">\[Cov(\bar{X})=\frac{1}{n}
+\Sigma\]</span></p>
+</div>
+<div id="questão-6" class="section level1">
+<h1>Questão 6</h1>
+<p><strong>Utilizando o R verifique, através de exemplos, que uma matriz
+de projeção tem autovalores somente no conjunto <span class="math inline">\(\{0, 1\}\)</span>. A demonstração pode ser feita
+utilizando a equação característica e lembrando que se <span class="math inline">\(M\)</span> é uma matriz de projeção, então <span class="math inline">\(M = M^2 = M^T\)</span>.</strong></p>
+<p>Igual a questão 3.</p>
+</div>
+<div id="questão-7" class="section level1">
+<h1>Questão 7</h1>
+<p><strong>Seja <span class="math inline">\(X\)</span> uma matriz de
+dados <span class="math inline">\((n × p)\)</span> com matriz de
+covariância <span class="math inline">\(S\)</span>. Sejam <span class="math inline">\(\lambda_1, . . . , \lambda_p\)</span> os
+autovalores de <span class="math inline">\(S\)</span>.</strong></p>
+<p><strong>(a) Mostre que a soma das variâncias <span class="math inline">\(s_{ii}\)</span> de <span class="math inline">\(X\)</span> (variação amostral total) é dada por
+<span class="math inline">\(\lambda_1 + . . . +
+\lambda_p\)</span>.</strong></p>
+<p>DÚVIDA.</p>
+<p>__(b) Mostre que a variância amostral generalizada é dada por $_1 × .
+. . × _p.__</p>
+<p>DÚVIDA.</p>
+<p><strong>(c) Mostre que a variância amostral generalizada se anula se
+as colunas de <span class="math inline">\(X\)</span> somarem
+zero.</strong></p>
+<p>DÚVIDA.</p>
+</div>
+<div id="questão-8" class="section level1">
+<h1>Questão 8</h1>
+<p><strong>Seja <span class="math inline">\(A\)</span> uma matriz
+quadrada <span class="math inline">\((k × k)\)</span> positiva definida.
+Mostre que,</strong></p>
+<p><strong>(a) <span class="math inline">\((A^{1/2})^T =
+A^{1/2}\)</span>.</strong></p>
+<p><span class="math display">\[(A^{1/2})^T=(A^T)^{1/2}=A^{1/2}\]</span></p>
+<p>Na última igualidade, foi usado que <span class="math inline">\(A=A^T\)</span>, pois se <span class="math inline">\(A\)</span> é positiva definida, é também
+simétrica.</p>
+<p><strong>(b) <span class="math inline">\(A^{1/2}A^{1/2}=A\)</span>.</strong></p>
+<p>DÚVIDA.</p>
+<p><strong>(c) <span class="math inline">\((A^{1/2})^{-1}=CD^{-1/2}C^T\)</span>, sendo <span class="math inline">\(D^{-1/2}=diag(1/\sqrt{\lambda_1},...,1/\sqrt{\lambda_k})\)</span>.</strong></p>
+<p>DÚVIDA: não definiu <span class="math inline">\(C\)</span>.</p>
+<p><strong>(d) <span class="math inline">\(A^{1/2}A^{-1/2}=A^{-1/2}A^{1/2}=I\)</span>.</strong></p>
+<p>DÚVIDA. Provar que <span class="math inline">\(A^{1/2}\)</span> é não
+singular.</p>
+<p><strong>(e) <span class="math inline">\(A^{-1/2}A^{-1/2}=A^{-1}\)</span>.</strong></p>
+<p>DÚVIDA.</p>
+</div>
+<div id="questão-9" class="section level1">
+<h1>Questão 9</h1>
+<p><strong>Considere uma matriz de correlação <span class="math inline">\((r×r)\)</span> com a mesma correlação (<span class="math inline">\(\rho\)</span>) em todas as células fora da
+diagonal. Encontre os autovalores e autovetores desta matriz quando
+<span class="math inline">\(r = 2, 3, 4\)</span>. Generalize seus
+resultados para qualquer número <span class="math inline">\(r\)</span>
+de variáveis. Como exemplo, faça <span class="math inline">\(\rho = 0.1,
+0.3, 0.5, 0.7, 0.9\)</span>.</strong></p>
+<p>Casos <span class="math inline">\(r=2\)</span>:</p>
+<pre class="r"><code>R &lt;- matrix(c(1, 0.1, 1, 0.1), 2)
+eigen(R)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 1.1 0.0
+## 
+## $vectors
+##            [,1]       [,2]
+## [1,] 0.99503719 -0.7071068
+## [2,] 0.09950372  0.7071068</code></pre>
+<pre class="r"><code>R &lt;- matrix(c(1, 0.3, 1, 0.3), 2)
+eigen(R)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 1.3 0.0
+## 
+## $vectors
+##           [,1]       [,2]
+## [1,] 0.9578263 -0.7071068
+## [2,] 0.2873479  0.7071068</code></pre>
+<pre class="r"><code>R &lt;- matrix(c(1, 0.5, 1, 0.5), 2)
+eigen(R)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 1.5 0.0
+## 
+## $vectors
+##           [,1]       [,2]
+## [1,] 0.8944272 -0.7071068
+## [2,] 0.4472136  0.7071068</code></pre>
+<pre class="r"><code>R &lt;- matrix(c(1, 0.7, 1, 0.7), 2)
+eigen(R)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 1.7 0.0
+## 
+## $vectors
+##           [,1]       [,2]
+## [1,] 0.8192319 -0.7071068
+## [2,] 0.5734623  0.7071068</code></pre>
+<pre class="r"><code>R &lt;- matrix(c(1, 0.9, 1, 0.9), 2)
+eigen(R)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 1.9 0.0
+## 
+## $vectors
+##           [,1]       [,2]
+## [1,] 0.7432941 -0.7071068
+## [2,] 0.6689647  0.7071068</code></pre>
+<p>Por algum motivo, o segundo autovalor está sendo truncado na saída.
+Na realidade, ele assume os seguintes valores: 0.9, 0.7, 0.5, 0.3, 0.1,
+para <span class="math inline">\(\rho=0.1, 0.3, 0.5, 0.7, 0.9\)</span>
+respectivamente.</p>
+<p>Casos <span class="math inline">\(r=3\)</span>:</p>
+<pre class="r"><code>R &lt;- matrix(c(1, 0.1, 0.1, 0.1, 1, 0.1, 0.1, 0.1, 1), 3)
+eigen(R)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 1.2 0.9 0.9
+## 
+## $vectors
+##           [,1]       [,2]       [,3]
+## [1,] 0.5773503  0.0000000  0.8164966
+## [2,] 0.5773503 -0.7071068 -0.4082483
+## [3,] 0.5773503  0.7071068 -0.4082483</code></pre>
+<pre class="r"><code>R &lt;- matrix(c(1, 0.3, 0.3, 0.3, 1, 0.3, 0.3, 0.3, 1), 3)
+eigen(R)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 1.6 0.7 0.7
+## 
+## $vectors
+##            [,1]       [,2]       [,3]
+## [1,] -0.5773503  0.8164966  0.0000000
+## [2,] -0.5773503 -0.4082483 -0.7071068
+## [3,] -0.5773503 -0.4082483  0.7071068</code></pre>
+<pre class="r"><code>R &lt;- matrix(c(1, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 1), 3)
+eigen(R)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 2.0 0.5 0.5
+## 
+## $vectors
+##            [,1]       [,2]       [,3]
+## [1,] -0.5773503  0.0000000  0.8164966
+## [2,] -0.5773503 -0.7071068 -0.4082483
+## [3,] -0.5773503  0.7071068 -0.4082483</code></pre>
+<pre class="r"><code>R &lt;- matrix(c(1, 0.7, 0.7, 0.7, 1, 0.7, 0.7, 0.7, 1), 3)
+eigen(R)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 2.4 0.3 0.3
+## 
+## $vectors
+##           [,1]       [,2]        [,3]
+## [1,] 0.5773503  0.3555207  0.73503175
+## [2,] 0.5773503 -0.8143165 -0.05962589
+## [3,] 0.5773503  0.4587958 -0.67540586</code></pre>
+<pre class="r"><code>R &lt;- matrix(c(1, 0.9, 0.9, 0.9, 1, 0.9, 0.9, 0.9, 1), 3)
+eigen(R)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 2.8 0.1 0.1
+## 
+## $vectors
+##           [,1]       [,2]        [,3]
+## [1,] 0.5773503  0.4586617  0.67549693
+## [2,] 0.5773503 -0.8143284  0.05946423
+## [3,] 0.5773503  0.3556666 -0.73496116</code></pre>
+<p>Por fim, casos <span class="math inline">\(r=4\)</span>:</p>
+<pre class="r"><code>R &lt;- matrix(c(1, 0.1, 0.1, 0.1, 0.1, 1, 0.1, 0.1, 0.1, 0.1, 1, 0.1, 0.1, 0.1, 0.1, 1), 4)
+eigen(R)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 1.3 0.9 0.9 0.9
+## 
+## $vectors
+##      [,1]       [,2]          [,3]         [,4]
+## [1,] -0.5  0.5099852  0.000000e+00  0.699939347
+## [2,] -0.5  0.4899141  8.756053e-17 -0.714131779
+## [3,] -0.5 -0.4999496 -7.071068e-01  0.007096216
+## [4,] -0.5 -0.4999496  7.071068e-01  0.007096216</code></pre>
+<pre class="r"><code>R &lt;- matrix(c(1, 0.3, 0.3, 0.3, 0.3, 1, 0.3, 0.3, 0.3, 0.3, 1, 0.3, 0.3, 0.3, 0.3, 1), 4)
+eigen(R)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 1.9 0.7 0.7 0.7
+## 
+## $vectors
+##      [,1]       [,2]       [,3]       [,4]
+## [1,] -0.5  0.8660254  0.0000000  0.0000000
+## [2,] -0.5 -0.2886751  0.0000000  0.8164966
+## [3,] -0.5 -0.2886751 -0.7071068 -0.4082483
+## [4,] -0.5 -0.2886751  0.7071068 -0.4082483</code></pre>
+<pre class="r"><code>R &lt;- matrix(c(1, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 1), 4)
+eigen(R)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 2.5 0.5 0.5 0.5
+## 
+## $vectors
+##      [,1]       [,2]       [,3]       [,4]
+## [1,] -0.5  0.8660254  0.0000000  0.0000000
+## [2,] -0.5 -0.2886751 -0.5773503 -0.5773503
+## [3,] -0.5 -0.2886751 -0.2113249  0.7886751
+## [4,] -0.5 -0.2886751  0.7886751 -0.2113249</code></pre>
+<pre class="r"><code>R &lt;- matrix(c(1, 0.7, 0.7, 0.7, 0.7, 1, 0.7, 0.7, 0.7, 0.7, 1, 0.7, 0.7, 0.7, 0.7, 1), 4)
+eigen(R)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 3.1 0.3 0.3 0.3
+## 
+## $vectors
+##      [,1]       [,2]       [,3]       [,4]
+## [1,] -0.5  0.0000000  0.0000000  0.8660254
+## [2,] -0.5 -0.5773503 -0.5773503 -0.2886751
+## [3,] -0.5 -0.2113249  0.7886751 -0.2886751
+## [4,] -0.5  0.7886751 -0.2113249 -0.2886751</code></pre>
+<pre class="r"><code>R &lt;- matrix(c(1, 0.9, 0.9, 0.9, 0.9, 1, 0.9, 0.9, 0.9, 0.9, 1, 0.9, 0.9, 0.9, 0.9, 1), 4)
+eigen(R)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 3.7 0.1 0.1 0.1
+## 
+## $vectors
+##      [,1]       [,2]       [,3]          [,4]
+## [1,] -0.5  0.8660254  0.0000000  0.000000e+00
+## [2,] -0.5 -0.2886751 -0.8164966 -1.751211e-16
+## [3,] -0.5 -0.2886751  0.4082483  7.071068e-01
+## [4,] -0.5 -0.2886751  0.4082483 -7.071068e-01</code></pre>
+<p>Observando o padrão que se repete, percebe-se que os autovalores
+<span class="math inline">\(\lambda_2, ..., \lambda_r\)</span> são
+sempre iguais a <span class="math inline">\(1-\rho\)</span>, resultando
+em <span class="math inline">\(\sum_{i=2}^r
+\lambda_i=\sum_{i=2}^r(1-\rho)=(1-r)(1-\rho)\)</span>. Além disso,
+sabemos que <span class="math inline">\(\sum_{i=1}^r
+\lambda_i=r\)</span> e, portanto, <span class="math inline">\(\lambda_1+\sum_{i=2}^r \lambda_i=r\)</span>,
+resultando em <span class="math inline">\(\lambda_1=r-\sum_{i=2}^r
+\lambda_i\)</span>. Daí, conclui-se que o primeiro (e maior) autovalor
+<span class="math inline">\(\lambda_1\)</span> é dado por:</p>
+<p><span class="math display">\[\lambda_1=r-\sum_{i=2}^r
+\lambda_i=r-(r-1)(1-\rho)=r-(r-r\rho-1+\rho)=r\rho+1-\rho=1+\rho(r-1)\]</span></p>
+</div>
+<div id="questão-10" class="section level1">
+<h1>Questão 10</h1>
+<p><strong>Considere a decomposição espectral de uma matrix <span class="math inline">\(A_{p×p}\)</span> positiva definida, isto é, <span class="math inline">\(A_{p×p} = B \Delta B^T\)</span>. Seja</strong></p>
+<p><span class="math display">\[A=\left(\begin{array}{cccc}
+3 &amp; 2 &amp; 3 &amp; 2 \\
+2 &amp; 5 &amp; 1 &amp; 1 \\
+3 &amp; 1 &amp; 8 &amp; 2 \\
+2 &amp; 1 &amp; 2 &amp; 3
+\end{array}\right)\]</span></p>
+<p><strong>(a) Obtenha <span class="math inline">\(B\)</span> e <span class="math inline">\(\Delta\)</span>.</strong></p>
+<pre class="r"><code>A &lt;- matrix(c(3, 2, 3, 2, 2, 5, 1, 1, 3, 1, 8, 2, 2, 1, 2, 3), 4)
+eigen(A)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 11.0862856  4.9293848  2.3114101  0.6729195
+## 
+## $vectors
+##            [,1]        [,2]       [,3]       [,4]
+## [1,] -0.4469286  0.17735073  0.2628243  0.8364956
+## [2,] -0.3274936  0.83843658 -0.3647871 -0.2381228
+## [3,] -0.7602805 -0.50687972 -0.3616326 -0.1851172
+## [4,] -0.3390817  0.09297191  0.8167470 -0.4574978</code></pre>
+<p>Logo:</p>
+<p><span class="math display">\[B=\left(\begin{array}{cccc}
+-0.4469286 &amp; 0.17735073 &amp; 0.2628243 &amp; 0.8364956 \\
+-0.3274936 &amp; 0.83843658 &amp; -0.3647871 &amp; -0.2381228 \\
+-0.7602805 &amp; -0.50687972 &amp; -0.3616326 &amp; -0.1851172 \\
+-0.3390817 &amp; 0.09297191 &amp; 0.8167470 &amp; -0.4574978
+\end{array}\right)\]</span></p>
+<p>E</p>
+<p><span class="math display">\[\Delta=\left(\begin{array}{cccc}
+11.0862856 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 4.9293848 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 2.3114101 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp;  0.6729195
+\end{array}\right)\]</span></p>
+<p><strong>(b) Obtenha <span class="math inline">\(A^{1/2}\)</span> e
+mostre que <span class="math inline">\((A^{1/2})^2=A\)</span>.</strong></p>
+<p><span class="math inline">\(A^{1/2}\)</span> é dado por:</p>
+<pre class="r"><code>A^0.5</code></pre>
+<pre><code>##          [,1]     [,2]     [,3]     [,4]
+## [1,] 1.732051 1.414214 1.732051 1.414214
+## [2,] 1.414214 2.236068 1.000000 1.000000
+## [3,] 1.732051 1.000000 2.828427 1.414214
+## [4,] 1.414214 1.000000 1.414214 1.732051</code></pre>
+<p>Além disso, temos que <span class="math inline">\((A^{1/2})^2\)</span> é dado por:</p>
+<pre class="r"><code>(A^0.5)^2</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    3    2    3    2
+## [2,]    2    5    1    1
+## [3,]    3    1    8    2
+## [4,]    2    1    2    3</code></pre>
+<p>que é igual a <span class="math inline">\(A\)</span>.</p>
+<p><strong>(c) Obtenha <span class="math inline">\((A^{1/2})^{-1}\)</span> (descreva seus elementos e
+mostre qe <span class="math inline">\((A^{1/2})^{-1}A^{1/2}=I\)</span>.</strong></p>
+<p><span class="math inline">\((A^{1/2})^{-1}\)</span> é dado por:</p>
+<pre class="r"><code>solve(A^0.5)</code></pre>
+<pre><code>##           [,1]       [,2]       [,3]       [,4]
+## [1,]  4.904431 -1.5995461 -1.5164079 -1.8428107
+## [2,] -1.599546  1.1319584  0.4276566  0.3033073
+## [3,] -1.516408  0.4276566  1.0736652  0.1145902
+## [4,] -1.842811  0.3033073  0.1145902  1.8133218</code></pre>
+<p>E <span class="math inline">\((A^{1/2})^{-1}A^{1/2}\)</span>:</p>
+<pre class="r"><code>round(solve(A^0.5)%*%(A^0.5))</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    0    0    0
+## [2,]    0    1    0    0
+## [3,]    0    0    1    0
+## [4,]    0    0    0    1</code></pre>
+<p>Que é igual à matriz identidade (<span class="math inline">\(I\)</span>).</p>
+<p><strong>Para as questões 11 e 12, considere o seguinte enunciado e
+marque todos os itens corretos.</strong></p>
+<p><strong>Considere a decomposição espectral de uma matriz <span class="math inline">\(A\)</span> como</strong></p>
+<p><span class="math display">\[A=PDP^T\]</span></p>
+<p><strong>sendo,</strong></p>
+<p><span class="math display">\[P=\left(\begin{array}{cccc}
+-0.455 &amp; 0.580 &amp; 0.675 \\
+-0.846 &amp; -0.045 &amp; -0.531 \\
+-0.278 &amp; -0.813 &amp; 0.511
+\end{array}\right)\]</span></p>
+<p><strong>e <span class="math inline">\(D=diag(13.542, 3.935,-2,
+477)\)</span>.</strong></p>
+</div>
+<div id="questão-11" class="section level1">
+<h1>Questão 11</h1>
+<p><strong>Marque Verdadeiro (V) ou Falso (F).</strong></p>
+<p><strong>Sobre a decomposição espectral de <span class="math inline">\(A^2\)</span>:</strong></p>
+<p><strong>(a) É igual a <span class="math inline">\(P^2D^2(P^T)^2\)</span>.</strong></p>
+<pre class="r"><code>P &lt;- matrix(c(-0.455, 0.580, 0.675, -0.846, -0.045, -0.531, -0.278, -0.813, 0.511), 3, byrow=T)
+D &lt;- diag(c(13.542, 3.935, -2.477))
+A &lt;- P%*%D%*%t(P)</code></pre>
+<pre class="r"><code>A%*%A</code></pre>
+<pre><code>##          [,1]      [,2]     [,3]
+## [1,] 45.96009  67.98798 18.01613
+## [2,] 67.98798 133.01396 42.04216
+## [3,] 18.01613  42.04216 26.00603</code></pre>
+<pre class="r"><code>eigen(A%*%A)</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 183.394938  15.465462   6.119673
+## 
+## $vectors
+##            [,1]        [,2]       [,3]
+## [1,] -0.4549551 -0.58030638  0.6754705
+## [2,] -0.8459893  0.04480407 -0.5313142
+## [3,] -0.2780612  0.81316487  0.5113168</code></pre>
+<p>A matriz de autovetores de <span class="math inline">\(A^2\)</span> é
+igual à matriz <span class="math inline">\(P\)</span>.</p>
+<p>Olhando primeiro para <span class="math inline">\(D^2\)</span>:</p>
+<pre class="r"><code>D%*%D</code></pre>
+<pre><code>##          [,1]     [,2]     [,3]
+## [1,] 183.3858  0.00000 0.000000
+## [2,]   0.0000 15.48423 0.000000
+## [3,]   0.0000  0.00000 6.135529</code></pre>
+<p>É equivalente à matriz diagonal de autovalores de <span class="math inline">\(A^2\)</span>.</p>
+<p>Agora, olhando para <span class="math inline">\(P^2\)</span>:</p>
+<pre class="r"><code>P%*%P</code></pre>
+<pre><code>##           [,1]      [,2]      [,3]
+## [1,] -0.471305 -0.838775 -0.270180
+## [2,]  0.570618 -0.056952 -0.818496
+## [3,]  0.672230 -0.540098  0.505174</code></pre>
+<p>Não é equivalente à matriz de autovetores de <span class="math inline">\(A^2\)</span>.</p>
+<p>Falso.</p>
+<p><strong>(b) É igual a <span class="math inline">\(PD^2P^T\)</span>.</strong></p>
+<p>Verdadeiro, já observamos que <span class="math inline">\(D^2\)</span> é igual à matriz diagonal de
+autovalores de <span class="math inline">\(A^2\)</span> e que <span class="math inline">\(P\)</span> é igual à matriz de autovetores de
+4A^2$.</p>
+<p><strong>(c) É igual a <span class="math inline">\((PDP^T)(PDP^T)\)</span>.</strong></p>
+<pre class="r"><code>D%*%t(P)%*%P%*%D</code></pre>
+<pre><code>##               [,1]         [,2]          [,3]
+## [1,] 183.390348644 9.804950e-03 -0.0014423720
+## [2,]   0.009804950 1.547484e+01  0.0004678558
+## [3,]  -0.001442372 4.678558e-04  6.1275957610</code></pre>
+<p>Ou seja, temos que <span class="math inline">\(DP^TPD \approx
+D^2\)</span>, satisfazendo também a estrutura da decomposição espectral
+de <span class="math inline">\(A^2\)</span>.</p>
+<p>Verdadeiro.</p>
+<p><strong>(d) É igual a <span class="math inline">\(P^2D(P^T)^2\)</span>.</strong></p>
+<p>Falso. Já vimos que <span class="math inline">\(P^2\)</span> não
+equivale à matriz de autovetores de <span class="math inline">\(A^2\)</span> e também sabemos que a matriz
+diagonal de autovalores de <span class="math inline">\(A^2\)</span> é
+igual a <span class="math inline">\(D^2\)</span>, que é diferente de
+<span class="math inline">\(D\)</span>.</p>
+<p><strong>(e) Não pode ser determinada.</strong></p>
+<p>Falso. Já determinamos.</p>
+<p><strong>(f) <span class="math inline">\(P\)</span> é a matriz formada
+pelos autovetores de <span class="math inline">\(A\)</span>.</strong></p>
+<p>Verdadeiro, isso deriva da definição de decomposição espectral.</p>
+</div>
+<div id="questão-12" class="section level1">
+<h1>Questão 12</h1>
+<p><strong>Marque o item incorreto. Considere <span class="math inline">\(\lambda_i\)</span> o i-ésimo autovalor de <span class="math inline">\(A\)</span>.</strong></p>
+<p><strong>(a) <span class="math inline">\(tr(A)=\sum_{i=1}^3
+\lambda_i=tr(D)\)</span>.</strong></p>
+<pre class="r"><code>sum(diag(A))</code></pre>
+<pre><code>## [1] 15.00116</code></pre>
+<pre class="r"><code>sum(eigen(A)$values)</code></pre>
+<pre><code>## [1] 15.00116</code></pre>
+<pre class="r"><code>sum(diag(D))</code></pre>
+<pre><code>## [1] 15</code></pre>
+<p>Verdadeiro</p>
+<p><strong>(b) <span class="math inline">\(A^{-1}=P^{-1}D^{-1}(P^T)^{-1}\)</span>.</strong></p>
+<pre class="r"><code>solve(A)</code></pre>
+<pre><code>##             [,1]        [,2]        [,3]
+## [1,] -0.08352159  0.16688499 -0.25026622
+## [2,]  0.16688499 -0.06075458  0.13645378
+## [3,] -0.25026622  0.13645378  0.06816553</code></pre>
+<pre class="r"><code>solve(P)%*%solve(D)%*%solve(t(P))</code></pre>
+<pre><code>##            [,1]       [,2]          [,3]
+## [1,]  0.1659877 -0.1011043  0.1489726137
+## [2,] -0.1011043 -0.2417229  0.2030535161
+## [3,]  0.1489726  0.2030535 -0.0001119009</code></pre>
+<p>Falso.</p>
+<p><strong>(c) <span class="math inline">\(A=APP^T\)</span>.</strong></p>
+<pre class="r"><code>A</code></pre>
+<pre><code>##            [,1]     [,2]       [,3]
+## [1,]  2.9986834 5.997837 -0.9969615
+## [2,]  5.9978373 9.001777  4.0009895
+## [3,] -0.9969615 4.000990  3.0006962</code></pre>
+<pre class="r"><code>A%*%P%*%t(P)</code></pre>
+<pre><code>##            [,1]     [,2]       [,3]
+## [1,]  2.9983884 5.996834 -0.9941212
+## [2,]  5.9952849 9.003252  4.0016239
+## [3,] -0.9947691 4.000690  3.0006708</code></pre>
+<p>Verdadeiro.</p>
+<p><strong>(d) <span class="math inline">\(P^TAP=D\)</span>.</strong></p>
+<pre class="r"><code>t(P)%*%A%*%P</code></pre>
+<pre><code>##              [,1]          [,2]          [,3]
+## [1,] 1.354268e+01  3.215397e-03  4.759125e-04
+## [2,] 3.215397e-03  3.930233e+00 -6.991613e-05
+## [3,] 4.759125e-04 -6.991613e-05 -2.470599e+00</code></pre>
+<pre class="r"><code>D</code></pre>
+<pre><code>##        [,1]  [,2]   [,3]
+## [1,] 13.542 0.000  0.000
+## [2,]  0.000 3.935  0.000
+## [3,]  0.000 0.000 -2.477</code></pre>
+<p>Verdadeiro.</p>
+<p><strong>(e) <span class="math inline">\(|A|=\prod_{i=1}^3
+\lambda_i\)</span>.</strong></p>
+<pre class="r"><code>det(A)</code></pre>
+<pre><code>## [1] -131.7465</code></pre>
+<pre class="r"><code>prod(eigen(A)$values)</code></pre>
+<pre><code>## [1] -131.7465</code></pre>
+<p>Verdadeiro.</p>
 </div>
 
 
